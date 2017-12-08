@@ -3,7 +3,7 @@
     <ul class="posts">
       <li v-for="post in items">
         <h3>{{post.Title}}</h3>
-        <p>{{post.CreateTime}}</p>
+        <p>{{post.CreateTime | times}}</p>
         <router-link :to="{ name: 'detail', params: { id: post.Id }}">{{ post.Title }}</router-link>
       </li>
     </ul>
@@ -20,6 +20,12 @@ export default {
     return {
       items : [],
       errors: []
+    }
+  },
+  filters:{
+    times:function (val) {
+      var date = new Date(val);
+      return date.toLocaleString('zh');
     }
   },
   created () {
