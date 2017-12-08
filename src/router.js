@@ -28,7 +28,8 @@ export default new VueRouter({
       component: Posts
     },
     {
-      path: '/post/:filename',
+      path: '/post/:id',
+      name:'detail',
       component: Post
     },
     {

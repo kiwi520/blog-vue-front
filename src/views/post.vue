@@ -10,9 +10,7 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import VueResource from 'vue-resource'
-Vue.use(VueResource)
+import axios from 'axios'
 import scrollTop from '../components/scrollTop.vue'
 export default {
   data () {
@@ -22,11 +20,14 @@ export default {
     }
   },
   created () {
-    this.$http.get('http://localhost:8889/v1/article/list').then(function(res){
-      if(res.status == 200){
-        this.post = res.data.data;
-      }
-    })
+    var article_id = this.$route.params.id;
+    if(article_id){
+      axios.get('http://localhost:8889/v1/article/detail/'+article_id).then(function(res){
+        if(res.status == 200){
+          this.post = res.data.data;
+        }
+      })
+    }
   },
   computed: {},
   mounted () {},

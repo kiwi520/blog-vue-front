@@ -4,16 +4,14 @@
       <li v-for="post in posts">
         <h3>{{post.Title}}</h3>
         <!--<p>{{post.datetime}}</p>-->
-        <p class="click" v-on:click="read(post.Title)">点击阅读>></p>
+        <p class="click" v-on:click="read(post.Id)">点击阅读>></p>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
-import VueResource from 'vue-resource'
-Vue.use(VueResource)
+import axios from 'axios'
 import router from '../router.js'
 export default {
   data () {

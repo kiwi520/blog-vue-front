@@ -5,7 +5,7 @@
       <p class="datetime">{{header.datetime}}</p>
       <ul v-if="items && items.length">
         <li class="content" v-for="item in items">
-          {{ item.Title }}
+          <router-link :to="{ name: 'detail', params: { id: item.Id }}">{{ item.Title }}</router-link>
         </li>
       </ul>
       <ul v-if="errors && errors.length">
