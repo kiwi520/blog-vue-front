@@ -25,6 +25,15 @@
       </ul>
     </nav>
     <router-view class="view" id='view'></router-view>
+    <div class="footer">
+      <div class="main">
+        Copyright © 2017 <a href="/." rel="nofollow">建级绥猷的博客</a> PowerBy
+        <a class="fonts" rel="nofollow" target="_blank" href="https://golang.org/" style="font-weight: bold"> GoLang </a> |
+        <a class="fonts" rel="nofollow" target="_blank" href="https://pages.coding.me" style="font-weight: bold"> Beego </a> |
+        <a class="fonts"rel="nofollow" target="_blank" href="https://pages.coding.me" style="font-weight: bold"> VueJs </a> |
+        <a class="fonts"rel="nofollow" target="_blank" href="https://pages.coding.me" style="font-weight: bold"> DigitalOcean </a>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -219,25 +228,42 @@ export default {
    color: white;
  }
  nav.navbar > ul.nav > li > a.router-link-active::before {
-   content: "[";
+   content: ">";
    position: absolute;
    top: 0;
    left: 6px;
    height: 100%;
    font-size: 28px;
+   border: 0px;
  }
  nav.navbar > ul.nav > li > a.router-link-active::after {
-   content: "]";
+   content: "<";
    position: absolute;
    top: 0;
    right: 6px;
    height: 100%;
    font-size: 28px;
+   border: 0px;
  }
  .view {
    width: 100%;
-   height: calc(100% - 100px);
+   height: calc(100% - 200px);
    /*margin: 0 auto;*/
    overflow-y: scroll;
+ }
+  .footer{
+    width: auto;
+    height: 100px;
+  }
+  .footer .main{
+    width: 70%;
+    height: 30px;
+    line-height: 100px;
+    margin: 0 auto;
+    text-align: center;
+  }
+ .footer .main .fonts{
+   color: #000000;
+   font-style: italic;
  }
 </style>

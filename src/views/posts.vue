@@ -1,36 +1,41 @@
 <template lang="html">
-  <div>
+  <div class="post scroll">
     <ul class="posts">
-      <li v-for="post in posts">
+      <li v-for="post in items">
         <h3>{{post.Title}}</h3>
-        <!--<p>{{post.datetime}}</p>-->
-        <p class="click" v-on:click="read(post.Id)">点击阅读>></p>
+        <p>{{post.CreateTime}}</p>
+        <router-link :to="{ name: 'detail', params: { id: post.Id }}">{{ post.Title }}</router-link>
       </li>
     </ul>
+    <scrollTop></scrollTop>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import router from '../router.js'
+import scrollTop from '../components/scrollTop.vue'
 export default {
   data () {
     return {
-      posts : []
+      items : [],
+      errors: []
     }
   },
   created () {
-    this.$http.get('http://localhost:8889/v1/article/list').then(function(res){
-      if(res.status == 200){
-        this.posts = res.data.data;
-      }
+    axios.get(`http://localhost:8889/v1/article/list`).then((response) => {
+      this.items = response.data.data
+    }).catch(e => {
+      this.errors.push(e)
     })
   },
   computed: {},
   mounted () {},
   methods: {
   },
-  components: {}
+  components: {
+    scrollTop
+  }
 }
 </script>
 
