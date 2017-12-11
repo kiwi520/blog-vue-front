@@ -7,9 +7,9 @@
         <h1>Kiwi Blog</h1>
         <h3 style="font-style: italic">Tired for their own life fighting for life</h3>
         <p class="socials">
-          <a href="https://github.com/Lee-Cloud" target="_blank" class='icon github'></a>
-          <a href="https://twitter.com/dangerous_cl"  target="_blank" class='icon coding'></a>
-          <a href="http://weibo.com/2808915224" target="_blank" class='icon sina'></a>
+          <a href="https://github.com/kiwi520" target="_blank" class='icon github'></a>
+          <a href="https://coding.net/u/alltrue"  target="_blank" class='icon coding'></a>
+          <a href="https://weibo.com/6126271354" target="_blank" class='icon sina'></a>
 
         </p>
       </div>
@@ -20,7 +20,6 @@
       <ul class="nav">
         <li><router-link to='/home'>首页</router-link></li>
         <li><router-link to='/posts'>文章</router-link></li>
-        <li><router-link to='/gallery'>作品</router-link></li>
         <li><router-link to='/about'>关于</router-link></li>
       </ul>
     </nav>
