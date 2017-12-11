@@ -9,14 +9,14 @@ import Gallery from './views/gallery.vue'
 import About from './views/about.vue'
 export default new VueRouter({
   mode: 'history',
-  base: 'blog',
+  base: '/',
   routes: [
-    // {
-    //   path: '/',
-    //   redirect: '/home'
-    // },
     {
       path: '/',
+      redirect: '/home'
+    },
+    {
+      path: '/home',
       component: Home
     },
     {

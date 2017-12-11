@@ -4,6 +4,8 @@
       <h3 class="post-title">{{item.Title}}</h3>
       <p class="datetime">发表于：{{item.CreateTime}}</p>
       <div class="content">{{item.Content}}</div>
+      <mavonEditor v-model="value"/>
+      <mavon-editor ref=md @imgAdd="$imgAdd"></mavon-editor>
       <scrollTop></scrollTop>
     </div>
   </div>
@@ -12,6 +14,8 @@
 <script>
 import axios from 'axios'
 import scrollTop from '../components/scrollTop.vue'
+import { mavonEditor } from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
 export default {
   data () {
     return {
@@ -31,9 +35,28 @@ export default {
   },
   computed: {},
   mounted () {},
-  methods: {},
+  methods: {
+    // 绑定@imgAdd event
+    $imgAdd(pos, $file){
+      alert("qweq")
+      // 第一步.将图片上传到服务器.
+      var formdata = new FormData();
+      formdata.append('image', $file);
+      axios({
+        url: 'http://localhost:8889/ueidtor',
+        method: 'post',
+        data: formdata,
+        headers: { 'Content-Type': 'multipart/form-data' },
+      }).then((url) => {
+        // 第二步.将返回的url替换到文本原位置![...](./0) -> ![...](url)
+        // $vm.$img2Url 详情见本页末尾
+        $vm.$img2Url(pos, url);
+      })
+    }
+  },
   components: {
-    scrollTop
+    scrollTop,
+    mavonEditor
   }
 }
 </script>

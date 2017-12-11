@@ -42,6 +42,7 @@ export default {
   created (){
     axios.get(`http://localhost:8889/v1/article/latest`).then((response) => {
       this.items = response.data.data
+      console.log(response.data.data)
     }).catch(e => {
       this.errors.push(e)
     })

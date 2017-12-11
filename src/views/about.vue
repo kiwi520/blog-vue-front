@@ -3,10 +3,6 @@
     <div class="about">
       <h1>About Website</h1>
       <h3>本站迭代</h3>
-      <!--<p class="text">-->
-        <!--大家好，我是Cloud，坐标厦门，是一名90后coder（好吧，其实并没有“后”）,谦虚但喜欢装逼，热爱生活，热爱健身，热爱coding。立志全栈的页面仔。-->
-      <!--</p>-->
-      <!--<h3>技术栈</h3>-->
       <ul class="list">
         <li>2014年第一版使用WordPress+ALiYun</li>
         <li>2015年第二版使用Laravel5.1+Slim+VueJs1.0+ALiYun</li>
