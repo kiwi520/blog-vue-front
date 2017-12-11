@@ -11,12 +11,12 @@ export default new VueRouter({
   mode: 'history',
   base: 'blog',
   routes: [
+    // {
+    //   path: '/',
+    //   redirect: '/home'
+    // },
     {
       path: '/',
-      redirect: '/home'
-    },
-    {
-      path: '/home',
       component: Home
     },
     {

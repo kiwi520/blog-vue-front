@@ -13,7 +13,7 @@
         <li>当前版使用BeeGo+VueJs2.0+DigitalOcean</li>
       </ul>
       <p  class="text">
-        从最初的使用开源博客系统,然后自己使用LNMP重构,现在又用GoLang重构...
+        从最初的使用开源博客系统,然后自己使用LNMP重构,现在又用GoLang+VueJs2.0 前后端分离重构...
       </p>
     </div>
     <div class="about">

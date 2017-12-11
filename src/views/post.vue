@@ -1,9 +1,9 @@
 <template lang="html">
-  <div>
-    <div class="post">
-      <h3 class="post-title">{{$route.params.filename}}</h3>
-      <p class="datetime">发表于：{{Mtime}}</p>
-      <div class="content" v-html="post.content"></div>
+  <div class="post-full">
+    <div class="post-cart">
+      <h3 class="post-title">{{item.Title}}</h3>
+      <p class="datetime">发表于：{{item.CreateTime}}</p>
+      <div class="content">{{item.Content}}</div>
       <scrollTop></scrollTop>
     </div>
   </div>
@@ -15,17 +15,17 @@ import scrollTop from '../components/scrollTop.vue'
 export default {
   data () {
     return {
-      post: '',
+      item: [],
       Mtime: ''
     }
   },
   created () {
     var article_id = this.$route.params.id;
     if(article_id){
-      axios.get('http://localhost:8889/v1/article/detail/'+article_id).then(function(res){
-        if(res.status == 200){
-          this.post = res.data.data;
-        }
+      axios.get('http://localhost:8889/v1/article/detail/'+article_id).then((response) => {
+        this.item = response.data.data
+      }).catch(e => {
+        this.errors.push(e)
       })
     }
   },
@@ -37,36 +37,43 @@ export default {
   }
 }
 </script>
-<style lang="css" >
-  div.post {
-    width: 7.5rem;
-    margin: 0 auto;
-    padding: 0.4rem 0.8rem;
-    color: #666;
-    line-height: 200%;
-    text-align: justify;
+<style lang="css" scoped>
+  div.post-full{
+    width: 960px;
+    height: calc(100% - 250px);
+    margin: 30px auto;
   }
-  div.post > h3.post-title {
+  div.post-cart {
+    opacity: 1;
+    margin-top:0px;
+    min-height: 100px;
+    padding: 35px;
+    background: rgba(0,0,0,0.1);
+    border-radius: 4px;
+    z-index: 100;
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.3);
+  }
+  div.post-cart > h3.post-title {
     text-align: center;
     line-height: 160%;
     margin-bottom: 0.2rem;
     color: #444;
   }
-  div.post > p.datetime {
+  div.post-cart > p.datetime {
     text-align: center;
     color: #888;
     font-size: 14px;
   }
-  div.post div.content pre {
+  div.post-cart div.content pre {
     background-color: #eee;
     overflow-x: scroll;
     padding: 0.2rem 0.3rem;
   }
-  div.post div.content blockquote > p{
+  div.post-cart div.content blockquote > p{
     position: relative;
     overflow: visible;
   }
-  div.post div.content blockquote > p::after {
+  div.post-cart div.content blockquote > p::after {
     content: '';
     position: absolute;
     left: -20px;

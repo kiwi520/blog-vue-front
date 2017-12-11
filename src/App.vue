@@ -4,7 +4,7 @@
       <!-- <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52
       src="//music.163.com/outchain/player?type=2&id=19497991&auto=1&height=32"></iframe> -->
       <div class="box">
-        <h1>Kiwi Blog</h1>
+        <h1>kiwi Blog</h1>
         <h3 style="font-style: italic">Tired for their own life fighting for life</h3>
         <p class="socials">
           <a href="https://github.com/kiwi520" target="_blank" class='icon github'></a>
@@ -26,7 +26,7 @@
     <router-view class="view" id='view'></router-view>
     <div class="footer">
       <div class="main">
-        Copyright © 2017 <a href="/." rel="nofollow">建级绥猷的博客</a> PowerBy
+        Copyright © 2017 <a href="/." rel="nofollow" style="font-style: italic">kiwi blog</a> PowerBy
         <a class="fonts" rel="nofollow" target="_blank" href="https://golang.org/" style="font-weight: bold"> GoLang </a> |
         <a class="fonts" rel="nofollow" target="_blank" href="https://pages.coding.me" style="font-weight: bold"> Beego </a> |
         <a class="fonts"rel="nofollow" target="_blank" href="https://pages.coding.me" style="font-weight: bold"> VueJs </a> |
@@ -264,5 +264,13 @@ export default {
  .footer .main .fonts{
    color: #000000;
    font-style: italic;
+ }
+ div.post {
+   width: 7.5rem;
+   margin: 0 auto;
+   padding: 0.4rem 0.8rem;
+   color: #666;
+   line-height: 200%;
+   text-align: justify;
  }
 </style>
