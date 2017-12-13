@@ -3,19 +3,38 @@
     <div class="post-cart">
       <h3 class="post-title">{{item.Title}}</h3>
       <p class="datetime">发表于：{{item.CreateTime}}</p>
-      <div class="content">{{item.Content}}</div>
-      <mavonEditor v-model="value"/>
-      <mavon-editor ref=md @imgAdd="$imgAdd"></mavon-editor>
+      <!--<div class="content">{{item.Content}}</div>-->
+      <div id="makeHtml" style="display: none">{{item.Content}}</div>
+      <div id="markdown"></div>
       <scrollTop></scrollTop>
     </div>
   </div>
 </template>
 
-<script>
+
+<script scoped>
 import axios from 'axios'
 import scrollTop from '../components/scrollTop.vue'
 import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
+import showdown from '/static/js/showdown.min.js'
+import prism from '/static/js/prism.js'
+
+
+
+var converter = new showdown.Converter(),
+  texts = $('#makeHtml').html();
+texts = texts.replace(/&lt;/g,"<");
+texts = texts.replace(/&gt;/g,">");
+texts = texts.replace(/&nbsp;/g," ");
+texts = texts.replace(/\n+/g,function(ns){
+  if(ns.length==1)
+    return '  '+ns
+  return ns
+});
+$('#markdown').html(converter.makeHtml(texts));
+
+
 export default {
   data () {
     return {
@@ -61,6 +80,7 @@ export default {
 }
 </script>
 <style lang="css" scoped>
+  @import '/static/css/prism.css';
   div.post-full{
     width: 960px;
     height: calc(100% - 250px);
