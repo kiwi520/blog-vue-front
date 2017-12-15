@@ -3,8 +3,7 @@
     <div class="post-cart">
       <h3 class="post-title">{{item.Title}}</h3>
       <p class="datetime">发表于：{{item.CreateTime}}</p>
-      <div class="content" v-html="item.Content"></div>
-      <div id="content"></div>
+      <div class="content" v-html="mark"></div>
       <scrollTop></scrollTop>
     </div>
   </div>
@@ -14,19 +13,26 @@
 <script scoped>
 import axios from 'axios'
 import scrollTop from '../components/scrollTop.vue'
+import Marked from 'marked'
+import prismjs from 'prismjs'
+import Vue from 'vue'
+Vue.use(prismjs)
+import 'prismjs/themes/prism-okaidia.css'
 export default {
   data () {
     return {
       item: [],
-      Mtime: ''
+      mark:''
     }
   },
   created () {
+
     var article_id = this.$route.params.id;
     if(article_id){
       axios.get('http://localhost:8889/v1/article/detail/'+article_id).then((response) => {
         this.item = response.data.data
-        console.log(response.data.data.Content)
+        this.mark = Marked(response.data.data.Content)
+        console.log(this.mark)
       }).catch(e => {
         this.errors.push(e)
       })
@@ -69,11 +75,6 @@ export default {
     text-align: center;
     color: #888;
     font-size: 14px;
-  }
-
-  div.post-cart .content{
-    width: auto;
-    height: 850px;
   }
 
   div.post-cart div.content pre {
