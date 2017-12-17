@@ -12,21 +12,17 @@
     "axios": "^0.15.3",
     "child_process": "^1.0.2",
     "express": "^4.14.0",
-    "highlight.js": "^9.12.0",
     "js-markdown-extra": "^1.2.4",
     "markdown-it": "^8.4.0",
     "markdown-it-prism": "^1.1.1",
     "marked": "^0.3.7",
     "mavon-editor": "^2.4.12",
-    "prismjs": "^1.9.0",
     "pygmentize-bundled": "^2.3.0",
-    "showdown": "^1.8.5",
     "vue": "^2.1.0",
     "vue-axios": "^2.0.2",
     "vue-markdown": "^2.2.4",
     "vue-resource": "^1.0.3",
-    "vue-router": "^2.1.1",
-    "ying": "^1.0.0"
+    "vue-router": "^2.1.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",

@@ -2,7 +2,7 @@
   <div class="post-full">
     <div class="post-cart">
       <h3 class="post-title">{{item.Title}}</h3>
-      <p class="datetime">发表于：{{item.CreateTime}}</p>
+      <p class="datetime">发表于：{{item.CreateTime | times}}</p>
       <div class="content" v-html="mark"></div>
       <scrollTop></scrollTop>
     </div>
@@ -13,16 +13,21 @@
 <script scoped>
 import axios from 'axios'
 import scrollTop from '../components/scrollTop.vue'
-import Marked from 'marked'
-import prismjs from 'prismjs'
-import Vue from 'vue'
-Vue.use(prismjs)
+import prism from 'markdown-it-prism'
+import MarkdownIt from 'markdown-it'
 import 'prismjs/themes/prism-okaidia.css'
+import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 export default {
   data () {
     return {
       item: [],
       mark:''
+    }
+  },
+  filters:{
+    times:function (val) {
+      var date = new Date(val);
+      return date.toLocaleString('zh');
     }
   },
   created () {
@@ -31,15 +36,17 @@ export default {
     if(article_id){
       axios.get('http://localhost:8889/v1/article/detail/'+article_id).then((response) => {
         this.item = response.data.data
-        this.mark = Marked(response.data.data.Content)
-        console.log(this.mark)
+        var md = new MarkdownIt()
+        md.use(prism)
+        this.mark = md.render(response.data.data.Content)
+        // console.log(this.mark)
+
       }).catch(e => {
         this.errors.push(e)
       })
     }
   },
   computed: {
-
   },
   mounted () {},
   methods: {
