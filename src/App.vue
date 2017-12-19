@@ -66,6 +66,9 @@ export default {
  a {
    text-decoration: none;
  }
+ body {
+   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+ }
  html,body {
    width: 100%;
    height: 100%;
@@ -246,18 +249,18 @@ export default {
  }
  .view {
    width: 100%;
-   height: calc(100% - 200px);
+   height: calc(100% - 160px);
    /*margin: 0 auto;*/
    overflow-y: scroll;
  }
   .footer{
     width: auto;
-    height: 100px;
+    height: 50px;
   }
   .footer .main{
     width: 70%;
     height: 30px;
-    line-height: 100px;
+    line-height: 50px;
     margin: 0 auto;
     text-align: center;
   }

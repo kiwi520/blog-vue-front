@@ -58,15 +58,17 @@ export default {
 </script>
 <style lang="css" scoped>
   div.post-full{
-    width: 960px;
-    height: calc(100% - 250px);
-    margin: 30px auto;
+    /*width: 960px;*/
+    width: 100%;
+    /*height: calc(100% - 100px);*/
+    margin: 0px auto;
   }
   div.post-cart {
+    width: 960px;
     opacity: 1;
-    margin-top:0px;
-    min-height: 100px;
-    padding: 35px;
+    margin:20px auto;
+    min-height: 960px;
+    padding: 30px;
     background: rgba(0,0,0,0.1);
     border-radius: 4px;
     z-index: 100;
@@ -91,7 +93,6 @@ export default {
   }
   div.post-cart div.content blockquote > p{
     position: relative;
-    overflow: visible;
   }
   div.post-cart div.content blockquote > p::after {
     content: '';
