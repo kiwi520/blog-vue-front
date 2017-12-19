@@ -35,7 +35,7 @@ export default {
     }
   },
   created () {
-    axios.get(`http://localhost:8889/v1/article/list`).then((response) => {
+    axios.get(`/v1/article/list`).then((response) => {
       this.items = response.data.data
     }).catch(e => {
       this.errors.push(e)

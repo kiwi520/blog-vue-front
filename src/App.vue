@@ -1,5 +1,6 @@
 <template>
   <div id="app" v-bind:class="[state]">
+    dewd
     <header class="header">
       <!-- <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52
       src="//music.163.com/outchain/player?type=2&id=19497991&auto=1&height=32"></iframe> -->
@@ -10,7 +11,6 @@
           <a href="https://github.com/kiwi520" target="_blank" class='icon github'></a>
           <a href="https://coding.net/u/alltrue"  target="_blank" class='icon coding'></a>
           <a href="https://weibo.com/6126271354" target="_blank" class='icon sina'></a>
-
         </p>
       </div>
       <i class="icon-down" v-on:click="rollDown"></i>
@@ -37,6 +37,9 @@
 </template>
 
 <script>
+  import axios from 'axios'
+  axios.defaults.baseURL = 'http://localhost:8889';
+  axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 export default {
   name: 'app',
   data () {
@@ -60,6 +63,7 @@ export default {
 </script>
 
 <style>
+
  * {
    box-sizing: border-box;
  }
@@ -73,6 +77,7 @@ export default {
    width: 100%;
    height: 100%;
    overflow: hidden;
+   background: #fff;
    margin: 0;
    padding: 0;
  }

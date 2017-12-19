@@ -5,7 +5,6 @@ Vue.use(VueRouter)
 import Home from './views/home.vue'
 import Posts from './views/posts.vue'
 import Post from './views/post.vue'
-import Gallery from './views/gallery.vue'
 import About from './views/about.vue'
 export default new VueRouter({
   mode: 'history',
@@ -18,10 +17,6 @@ export default new VueRouter({
     {
       path: '/home',
       component: Home
-    },
-    {
-      path: '/gallery',
-      component: Gallery
     },
     {
       path: '/posts',

@@ -34,7 +34,7 @@ export default {
 
     var article_id = this.$route.params.id;
     if(article_id){
-      axios.get('http://localhost:8889/v1/article/detail/'+article_id).then((response) => {
+      axios.get('/v1/article/detail/'+article_id).then((response) => {
         this.item = response.data.data
         var md = new MarkdownIt()
         md.use(prism)
@@ -60,15 +60,15 @@ export default {
   div.post-full{
     /*width: 960px;*/
     width: 100%;
-    /*height: calc(100% - 100px);*/
+    height: calc(100% - 250px);
     margin: 0px auto;
   }
   div.post-cart {
-    width: 960px;
     opacity: 1;
-    margin:20px auto;
-    min-height: 960px;
-    padding: 30px;
+    width: 960px;
+    margin: 20px auto;
+    min-height: 100px;
+    padding: 35px;
     background: rgba(0,0,0,0.1);
     border-radius: 4px;
     z-index: 100;
@@ -93,6 +93,7 @@ export default {
   }
   div.post-cart div.content blockquote > p{
     position: relative;
+    /*overflow: visible;*/
   }
   div.post-cart div.content blockquote > p::after {
     content: '';
