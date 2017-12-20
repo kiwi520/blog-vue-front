@@ -1,4 +1,5 @@
 <template lang="html">
+<div id='home'>
     <div class="post scroll">
       <h4>最新文章</h4>
       <ul class="posts" v-if="items && items.length">
@@ -20,17 +21,18 @@
       </ul>
       <scrollTop></scrollTop>
     </div>
+</div>
 </template>
 <script>
-import axios from 'axios'
 import scrollTop from '../components/scrollTop.vue'
+import NProgress from 'nprogress'
+
 export default {
   data () {
     return {
       header:'',
       items:[],
-      errors: [],
-
+      errors: []
     }
   },
   filters:{
@@ -40,16 +42,15 @@ export default {
     }
   },
   created (){
-    axios.get(`/v1/article/latest`).then((response) => {
+    NProgress.start();
+    this.$http.get(`/v1/article/latest`).then((response) => {
       this.items = response.data.data
       console.log(response.data.data)
+      NProgress.done()
     }).catch(e => {
       this.errors.push(e)
     })
   },
-  computed: {},
-  mounted () {},
-  methods: {},
   components: {
     scrollTop
   }

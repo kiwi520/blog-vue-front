@@ -8,8 +8,6 @@
     </div>
   </div>
 </template>
-
-
 <script scoped>
 import axios from 'axios'
 import scrollTop from '../components/scrollTop.vue'
@@ -17,6 +15,7 @@ import prism from 'markdown-it-prism'
 import MarkdownIt from 'markdown-it'
 import 'prismjs/themes/prism-okaidia.css'
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
+
 export default {
   data () {
     return {
@@ -31,10 +30,9 @@ export default {
     }
   },
   created () {
-
     var article_id = this.$route.params.id;
     if(article_id){
-      axios.get('/v1/article/detail/'+article_id).then((response) => {
+      this.$http.get('/v1/article/detail/'+article_id).then((response) => {
         this.item = response.data.data
         var md = new MarkdownIt()
         md.use(prism)
@@ -45,11 +43,6 @@ export default {
         this.errors.push(e)
       })
     }
-  },
-  computed: {
-  },
-  mounted () {},
-  methods: {
   },
   components: {
     scrollTop,

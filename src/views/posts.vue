@@ -18,8 +18,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-import router from '../router.js'
 import scrollTop from '../components/scrollTop.vue'
 export default {
   data () {
@@ -35,7 +33,7 @@ export default {
     }
   },
   created () {
-    axios.get(`/v1/article/list`).then((response) => {
+    this.$http.get(`/v1/article/list`).then((response) => {
       this.items = response.data.data
     }).catch(e => {
       this.errors.push(e)
