@@ -32,7 +32,7 @@ export default {
         rollUp: function () {
         this.state = 'roll-up'
         }
-    } 
+    }
 }
 </script>
 <style>
