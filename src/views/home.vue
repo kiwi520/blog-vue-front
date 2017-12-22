@@ -26,6 +26,7 @@
 <script>
 import scrollTop from '../components/scrollTop.vue'
 import NProgress from 'nprogress'
+import axios from 'axios'
 
 export default {
   data () {
@@ -41,14 +42,17 @@ export default {
      return date.toLocaleString('zh');
     }
   },
-  created (){
+  beforeRouteEnter (to, from, next){
     NProgress.start();
-    this.$http.get(`/v1/article/latest`).then((response) => {
-      this.items = response.data.data
-      console.log(response.data.data)
-      NProgress.done()
+    axios.get(`/v1/article/latest`).then((response) => {
+      next(vm => {
+        vm.items = response.data.data
+        NProgress.done()
+      })
     }).catch(e => {
-      this.errors.push(e)
+      next(vm => {
+        vm.errors.push(e)
+      })
     })
   },
   components: {

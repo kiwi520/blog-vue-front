@@ -19,6 +19,21 @@ export default {
 
  * {
    box-sizing: border-box;
+    -webkit-text-size-adjust: 100%;
+    /* Font varient */
+    font-variant-ligatures: none;
+    -webkit-font-variant-ligatures: none;
+    /* Smoothing */
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
+    font-size: 16px;
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    color: #4c5667;
+    transition: background-color 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out;
  }
  a {
    text-decoration: none;
@@ -29,8 +44,7 @@ export default {
  html,body {
    width: 100%;
    height: 100%;
-   overflow: hidden;
-   background: #fff;
+   background: #EBEBEB;
    margin: 0;
    padding: 0;
  }
@@ -55,51 +69,6 @@ export default {
      width: 30px;
      height: 30px;
    }
- }
- nav.navbar {
-   width: 100%;
-   height: 100px;
-   background-color: black;
- }
- nav.navbar > ul.nav {
-   width: 7.5rem;
-   height: 100%;
-   display: flex;
-   margin: 0 auto;
-   list-style: none;
-   padding: 0;
- }
- nav.navbar > ul.nav > li {
-   flex: 1;
-   height: 100%;
-   line-height: 100px;
-   text-align: center;
-   color: white;
- }
- nav.navbar > ul.nav > li > a {
-   position: relative;
-   display: block;
-   width: 100%;
-   height: 100%;
-   color: white;
- }
- nav.navbar > ul.nav > li > a.router-link-active::before {
-   content: ">";
-   position: absolute;
-   top: 0;
-   left: 6px;
-   height: 100%;
-   font-size: 28px;
-   border: 0px;
- }
- nav.navbar > ul.nav > li > a.router-link-active::after {
-   content: "<";
-   position: absolute;
-   top: 0;
-   right: 6px;
-   height: 100%;
-   font-size: 28px;
-   border: 0px;
  }
   .footer{
     width: auto;

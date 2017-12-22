@@ -19,11 +19,14 @@
 
 <script>
 import scrollTop from '../components/scrollTop.vue'
+import axios from 'axios'
+import nprogress from 'nprogress'
+
 export default {
   data () {
     return {
       items : [],
-      errors: []
+      errors: [],
     }
   },
   filters:{
@@ -32,16 +35,18 @@ export default {
       return date.toLocaleString('zh');
     }
   },
-  created () {
-    this.$http.get(`/v1/article/list`).then((response) => {
-      this.items = response.data.data
+  beforeRouteEnter(to, from, next){
+    nprogress.start()
+    axios.get(`/v1/article/list`).then((response) => {
+      next(vm => {
+        vm.items = response.data.data
+        nprogress.done()
+      })
     }).catch(e => {
-      this.errors.push(e)
+      next(vm => {
+        vm.errors.push(e)
+      })
     })
-  },
-  computed: {},
-  mounted () {},
-  methods: {
   },
   components: {
     scrollTop

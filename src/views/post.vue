@@ -15,6 +15,7 @@ import prism from 'markdown-it-prism'
 import MarkdownIt from 'markdown-it'
 import 'prismjs/themes/prism-okaidia.css'
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
+import nprogress from 'nprogress'
 
 export default {
   data () {
@@ -29,20 +30,23 @@ export default {
       return date.toLocaleString('zh');
     }
   },
-  created () {
-    var article_id = this.$route.params.id;
-    if(article_id){
-      this.$http.get('/v1/article/detail/'+article_id).then((response) => {
-        this.item = response.data.data
+  beforeRouteEnter(to, from, next) {
+    nprogress.start();
+    var article_id = to.params.id;
+    axios.get('/v1/article/detail/'+article_id).then((response) => {
+      next(vm => {
+        vm.item = response.data.data
         var md = new MarkdownIt()
         md.use(prism)
-        this.mark = md.render(response.data.data.Content)
-        // console.log(this.mark)
-
-      }).catch(e => {
-        this.errors.push(e)
+        vm.mark = md.render(response.data.data.Content)
+        nprogress.done()
       })
-    }
+    }).catch(e => {
+      next(vm => {
+        vm.errors.push(e)
+        nprogress.done()
+      })
+    })
   },
   components: {
     scrollTop,
@@ -60,12 +64,11 @@ export default {
     opacity: 1;
     width: 960px;
     margin: 20px auto;
-    min-height: 100px;
+    min-height: 80vh;
     padding: 35px;
-    background: rgba(0,0,0,0.1);
-    border-radius: 4px;
+    border-radius: 3px;
     z-index: 100;
-    box-shadow: 10px 10px 30px rgba(0,0,0,0.3);
+    background: #ffffff;
   }
   div.post-cart > h3.post-title {
     text-align: center;
@@ -80,13 +83,11 @@ export default {
   }
 
   div.post-cart div.content pre {
-    background-color: #eee;
-    overflow-x: scroll;
+    background-color: #ffffff;
     padding: 0.2rem 0.3rem;
   }
   div.post-cart div.content blockquote > p{
     position: relative;
-    /*overflow: visible;*/
   }
   div.post-cart div.content blockquote > p::after {
     content: '';

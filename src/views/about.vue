@@ -43,9 +43,17 @@
 </template>
 
 <script>
+import nprogress from 'nprogress'
+
 export default {
   data () {
     return {}
+  },
+  beforeRouteEnter(to, from ,next){
+    nprogress.start()
+    next(() => {
+      nprogress.done()
+    })
   }
 }
 </script>
