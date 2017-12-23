@@ -7,7 +7,9 @@
         <li><router-link to='/about'>关于</router-link></li>
       </ul>
     </nav>
-    <router-view></router-view>
+    <transition name="fade" mode="out-in">
+      <router-view></router-view>
+    </transition>
     <div class="footer">
       <div class="main">
         Copyright © 2017 <a href="/." rel="nofollow" class="author">kiwi blog</a> PowerBy
@@ -26,6 +28,23 @@ export default {
 </script>
 <style lang='scss' scoped>
 #common{
+  height: 100%;
+  overflow-y: scroll;
+  .fade-enter-active {
+    transition: opacity .5s ease-in
+  }
+  .fade-leave-active {
+    transition: opacity .2s ease-out
+  }
+  .fade-enter{
+    opacity: 0
+  }
+  .fade-leave-to {
+    opacity: 0
+  }
+  .fade-enter-to, .fade-leave{
+    opacity: 1;
+  }
   nav.navbar {
     width: 100%;
     height: 50px;
@@ -37,12 +56,13 @@ export default {
     width: 7.5rem;
     height: 100%;
     display: flex;
+    justify-content: flex-start;
     margin: 0 auto;
     list-style: none;
     padding: 0;
   }
   nav.navbar > ul.nav > li {
-    flex: 1;
+    padding-right: 50px;
     height: 100%;
     line-height: 50px;
     text-align: center;
@@ -74,17 +94,28 @@ export default {
   }
 }
 div.footer{
+  height: auto;
   div.main{
+    overflow: hidden;
+    width: 960px;
+    height: auto;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border-top: 1px dashed rgba(0,0,0,0.1);
+    padding-top: 20px;
+    font-size: 12px;
     a.author{
       color: #00ada7;
       padding-right: 10px;
       padding-left: 10px;
+      font-size: 12px;
+      font-weight: 700;
     }
     a.fonts{
       font-weight: 400;
       color: #999;
-      font-size: 14px;
       font-style: normal;
+      font-size: 12px;
       &:hover{
         color: #00ada7;
       }

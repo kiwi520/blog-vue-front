@@ -114,20 +114,6 @@ export default {
     font-weight: 600;
    }
   }
-  .icon-up {
-    position: absolute;
-    top: 200%;
-    left: 10px;
-    z-index: 1000;
-    display: block;
-    width: 60px;
-    height: 60px;
-    background-image: url('../assets/rocket.png');
-    background-size: 100% 100%;
-    transform: translate(0,calc(-100% - 0.5rem));
-    cursor: pointer;
-    opacity: 0.2;
-  }
 }
 @media (min-width: 768px) {
   body {

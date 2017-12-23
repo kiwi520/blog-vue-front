@@ -73,6 +73,7 @@ export default {
   div.post{
     width: 100%;
     padding: 40px;
+    min-height: calc(100vh - 211px);
   }
   ul.posts{
     overflow: hidden;

@@ -49,8 +49,8 @@ export default {
    padding: 0;
  }
  #app {
-   width: 100%;
-   height: 100%;
+  width: 100%;
+  height: 100%;
  }
  @media (min-width: 768px) {
    body {

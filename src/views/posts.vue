@@ -3,14 +3,8 @@
     <h4>文章归档</h4>
     <ul class="posts">
       <li v-for="post in items">
-        <h3>{{post.Title}}</h3>
-        <p class="main">
-          <span class="leftbg"><i class="newbg"></i>{{post.CreateTime | times}}</span>
-          <span class="full">
-          <i class="fullbg"></i>
-          <router-link :to="{ name: 'detail', params: { id: post.Id }}">看全文</router-link>
-          </span>
-        </p>
+        <span class="time">{{post.CreateTime | times}}</span>
+        <router-link :to="{ name: 'detail', params: { id: post.Id }}" class='title'><h3>{{post.Title}}</h3></router-link>
       </li>
     </ul>
     <scrollTop></scrollTop>
@@ -26,7 +20,7 @@ export default {
   data () {
     return {
       items : [],
-      errors: [],
+      errors: []
     }
   },
   filters:{
@@ -54,68 +48,42 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
+div.post{
+  width: 960px;
+  min-height: calc(100vh - 211px);
+  background: white;
+  margin: 0 auto;
+  h4{
+    border-left: 3px solid #00ada7;
+    height: 20px;
+    line-height: 20px;
+    text-indent: 20px;
+  }
+  h3{
+    margin: 0px;
+    width: 300px;
+    color: #00ada7;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+  }
   ul.posts {
-    /*width: 7.5rem;*/
-    margin: 0 auto;
-    /*padding: 0.4rem 0.8rem;*/
+    width: 100%;
     list-style: none;
+    overflow: hidden;
+    li{
+      float: left;
+      width: 100%;
+      .title,.time{
+        float: left;
+      }
+      span.time{
+        width: 200px;
+      }
+    }
+    
   }
-  ul.posts h3 {
-    color: #555;
-  }
-
-  ul.posts > li:first-child{
-    border-top: 1px dashed #ccc;
-  }
-
-  ul.posts > li >.main > span.leftbg{
-    width: 85%;
-    float: left;
-    font-size: 20px;
-  }
-  ul.posts > li >.main > span.leftbg > i.newbg{
-    width: 16px;
-    height: 16px;
-    display: inline-block;
-    margin-right: 8px;
-    background: url(../assets/newsbg01.png) no-repeat left center;
-  }
-  ul.posts > li >.main > span.full{
-    width: 60px;
-    height: auto;
-  }
-  ul.posts > li >.main > span.full >i.fullbg{
-    width:16px;
-    height: 16px;
-    display: inline-block;
-    background: url(../assets/newsbg02.png) no-repeat left center;
-  }
-  ul.posts > li >.main > span.full > a{
-    /*margin-left: 19px;*/
-    font-size: 18px;
-    font-style: italic;
-    color: #838383;
-    display: inline-block;
-  }
-  ul.posts > li {
-    position: relative;
-    /*padding: 0.4rem 0;*/
-    margin-left: 0px;
-    padding-left: 0px;
-    border-bottom: 1px dashed #ccc;
-  }
-  ul.posts > li > p {
-    font-size: 12px;
-    color: #666;
-  }
-  ul.posts > li > p.click {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    font-size: 14px;
-    cursor: pointer;
-    text-decoration: underline;
-  }
+}
 </style>
 

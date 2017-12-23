@@ -56,18 +56,18 @@ export default {
   div.post-full{
     /*width: 960px;*/
     width: 100%;
-    height: calc(100% - 250px);
-    margin: 0px auto;
+    margin-bottom: 50px;
+    
   }
   div.post-cart {
     opacity: 1;
     width: 960px;
     margin: 20px auto;
-    min-height: 80vh;
     padding: 35px;
     border-radius: 3px;
     z-index: 100;
     background: #ffffff;
+    min-height: calc(100vh - 221px);
   }
   div.post-cart > h3.post-title {
     text-align: center;
