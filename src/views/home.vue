@@ -67,7 +67,7 @@ export default {
 <style lang="scss" scoped>
 #home{
   background:white;
-  width: 900px;
+  width: 960px;
   margin: 0 auto;
   box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.2);
   div.post{

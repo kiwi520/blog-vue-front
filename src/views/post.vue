@@ -3,7 +3,7 @@
     <div class="post-cart">
       <h3 class="post-title">{{item.Title}}</h3>
       <p class="datetime">发表于：{{item.CreateTime | times}}</p>
-      <div class="content" v-html="mark"></div>
+      <div class="content markdown-body" v-html="mark"></div>
       <scrollTop></scrollTop>
     </div>
   </div>
@@ -14,7 +14,6 @@ import scrollTop from '../components/scrollTop.vue'
 import prism from 'markdown-it-prism'
 import MarkdownIt from 'markdown-it'
 import 'prismjs/themes/prism-okaidia.css'
-import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 import nprogress from 'nprogress'
 
 export default {
@@ -74,6 +73,7 @@ export default {
     text-align: center;
     line-height: 160%;
     margin-bottom: 0.2rem;
+    font-size: 24px;
     color: #444;
   }
   div.post-cart > p.datetime {
