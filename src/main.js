@@ -6,6 +6,7 @@ import router from './router.js'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import './assets/css/nprogress.css'
+import './assets/css/iconfont.css'
 
 Vue.use(VueAxios, axios)
 

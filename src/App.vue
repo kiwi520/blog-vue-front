@@ -83,7 +83,6 @@ export default {
   }
  .footer .main .fonts{
    color: #000000;
-   font-style: italic;
  }
  div.post {
    width: 7.5rem;
