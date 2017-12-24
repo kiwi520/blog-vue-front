@@ -58,11 +58,18 @@ export default {
     /*width: 960px;*/
     width: 100%;
     margin-bottom: 50px;
-    
   }
   div.post-cart {
     opacity: 1;
     width: 960px;
+    @media screen and (max-width:960px){
+      width: 760px; 
+    }
+    @media screen and (max-width:760px){
+      width: 100%; 
+      padding: 35px 10px;
+      margin-top: 0px;
+    }
     margin: 20px auto;
     padding: 35px;
     border-radius: 3px;

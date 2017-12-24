@@ -42,15 +42,14 @@ export default {
    font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
  }
  html,body {
-   width: 100%;
-   height: 100%;
    background: #EBEBEB;
    margin: 0;
    padding: 0;
+   width: 100%;
  }
  #app {
   width: 100%;
-  height: 100%;
+  overflow: hidden;
  }
  @media (min-width: 768px) {
    body {

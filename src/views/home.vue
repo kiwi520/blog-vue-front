@@ -19,6 +19,7 @@
         </li>
       </ul>
     </div>
+    <scrollTop></scrollTop>
 </div>
 </template>
 <script>
@@ -69,10 +70,20 @@ export default {
   background:white;
   width: 960px;
   margin: 0 auto;
+  box-sizing: border-box;
   box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.2);
+  @media screen and (max-width:960px){
+    width: 760px; 
+  }
+  @media screen and (max-width:760px){
+    width: 100%; 
+  }
   div.post{
     width: 100%;
     padding: 40px;
+    @media screen and (max-width:760px){
+      padding: 40px 10px;
+    }
     min-height: calc(100vh - 211px);
   }
   ul.posts{
@@ -106,6 +117,9 @@ export default {
         float: left;
         width: 100%;
         margin: 0px;
+        @media screen and (max-width:760px){
+          display: none;
+        }
         span.leftbg{
           color: #888;
           font-size: 14px;
@@ -132,6 +146,10 @@ export default {
           padding: 0px 5px;
           height: 30px;
           line-height: 30px;
+          @media screen and (max-width:760px){
+            width: 100%;
+            text-align: center;
+          }
         }
       }
       

@@ -1,23 +1,30 @@
 <template lang="html">
-  <span class="scrollTop" v-on:click="scrollTop"><i class='iconfont icon-scroll_top'></i></span>
+  <span class="scrollTop" @click="scrollTop" :class='show ? "active" : ""'><i class='iconfont icon-scroll_top'></i></span>
 </template>
 
 <script>
 export default {
   data () {
-    return {}
+    return {
+      show: false
+    }
   },
-  computed: {},
-  mounted () {},
+  created() {
+    window.addEventListener('scroll', this.ifShowScrollButton)
+  },
+  destory() {
+    window.removeEventListener('scroll', this.ifShowScrollButton)
+  },
   methods: {
-    scrollTop : function(){
-      var scrollBox = document.getElementById('view');
-      var T = setInterval(function(){
-        scrollBox.scrollTop -=100;
-        if(scrollBox.scrollTop == 0){
-          clearInterval(T)
-        }
-      },10)
+    scrollTop() {
+      window.scrollTo(0, 0)
+    },
+    ifShowScrollButton() {
+      if(window.scrollY > 300) {
+        this.show = true
+        return
+      }
+      this.show = false
     }
   },
   components: {}
@@ -27,17 +34,23 @@ export default {
 <style lang="scss" scoped>
   span.scrollTop {
     position: fixed;
-    bottom: 40px;
+    bottom: -100px;
     right: 40px;
     display: block;
-    width: 40px;
-    height: 40px;
-    opacity: 0.2;
+    width: 50px;
+    height: 50px;
+    opacity: 0;
     cursor: pointer;
+    transition: opacity, bottom .5s ease-in-out;
+    &.active{
+      opacity: 1;
+      bottom: 40px;
+    }
     i.iconfont{
       font-size: 50px;
-      color: green;
-      font-weight: 700;
+      color: #4c5667;
+      font-weight: 500;
+      text-shadow: 0px 0px rgba(0, 0, 0, 0.3);
     }
   }
 </style>

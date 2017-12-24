@@ -1,5 +1,5 @@
 <template>
-  <div id='head' :class="state">
+  <div id='head'>
       <header class="header">
         <!-- <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52
         src="//music.163.com/outchain/player?type=2&id=19497991&auto=1&height=32"></iframe> -->
@@ -29,7 +29,7 @@ export default {
  .header {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: url('../assets/theme10-min.jpg') no-repeat center;
   background-size: cover;
   iframe {

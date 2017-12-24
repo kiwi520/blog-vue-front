@@ -51,6 +51,12 @@ export default {
 <style lang="scss" scoped>
 div.post{
   width: 960px;
+  @media screen and (max-width:960px){
+    width: 760px; 
+  }
+   @media screen and (max-width:760px){
+    width: 100%; 
+  }
   min-height: calc(100vh - 211px);
   background: white;
   margin: 0 auto;
@@ -72,6 +78,11 @@ div.post{
     width: 100%;
     list-style: none;
     overflow: hidden;
+    @media screen and (max-width:760px){
+      padding-left: 0px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
     li{
       float: left;
       width: 100%;
@@ -80,6 +91,9 @@ div.post{
       }
       span.time{
         width: 200px;
+        @media screen and (max-width:760px){
+          display: none;
+        }
       }
     }
     

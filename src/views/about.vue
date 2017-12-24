@@ -58,12 +58,18 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
   a{
    color: #f28d1a; 
   }
   div.about {
     width: 960px;
+    @media screen and (max-width:960px){
+      width: 760px; 
+    }
+    @media screen and (max-width:760px){
+      width: 100%; 
+    }
     background: white;
     margin: 0 auto;
     padding: 30px 40px 0px 40px;

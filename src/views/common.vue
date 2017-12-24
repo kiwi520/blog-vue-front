@@ -12,7 +12,8 @@
     </transition>
     <div class="footer">
       <div class="main">
-        Copyright © 2017 <a href="/." rel="nofollow" class="author">kiwi blog</a> PowerBy
+        Copyright © 2017 <a href="/." rel="nofollow" class="author">kiwi blog</a>
+        <a class='fonts small' >PowerBy</a>
         <a class="fonts" rel="nofollow" target="_blank" href="https://golang.org/" >GoLang</a>
         <a class="fonts" rel="nofollow" target="_blank" href="https://pages.coding.me">Beego</a>
         <a class="fonts" rel="nofollow" target="_blank" href="https://pages.coding.me">VueJs</a>
@@ -29,7 +30,6 @@ export default {
 <style lang='scss' scoped>
 #common{
   height: 100%;
-  overflow-y: scroll;
   .fade-enter-active {
     transition: opacity .5s ease-in
   }
@@ -52,6 +52,9 @@ export default {
     border-bottom: 2px solid #f28d1a;
   }
   nav.navbar {
+    @media screen and (max-width:760px){
+      margin:0px;
+    }
     width: 100%;
     height: 50px;
     background-color: #24292e;
@@ -63,6 +66,11 @@ export default {
     height: 100%;
     display: flex;
     justify-content: flex-start;
+    box-sizing: border-box;
+    @media screen and (max-width:760px){
+      padding: 0px 20px;
+      justify-content: space-between;
+    }
     margin: 0 auto;
     list-style: none;
     padding: 0;
@@ -72,6 +80,9 @@ export default {
     height: 100%;
     line-height: 50px;
     text-align: center;
+    @media screen and (max-width:760px){
+      padding-right: 0px;
+    }
   }
   nav.navbar > ul.nav > li > a {
     position: relative;
@@ -105,6 +116,12 @@ div.footer{
   div.main{
     overflow: hidden;
     width: 960px;
+    @media screen and (max-width:960px){
+      width: 760px; 
+    }
+    @media screen and (max-width:760px){
+      width: 100%; 
+    }
     height: auto;
     margin-top: 40px;
     margin-bottom: 20px;
@@ -119,12 +136,23 @@ div.footer{
       font-weight: 700;
     }
     a.fonts{
+      @media screen and (max-width:760px){
+        display: none;
+      }
       font-weight: 400;
       color: #999;
       font-style: normal;
       font-size: 12px;
       &:hover{
         color: #00ada7;
+      }
+    }
+    a.small{
+      color: #999;
+      font-weight: 400;
+      font-size: 12px;
+      &:hover{
+        color: #999;
       }
     }
   }
