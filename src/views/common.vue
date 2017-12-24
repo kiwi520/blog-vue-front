@@ -45,6 +45,12 @@ export default {
   .fade-enter-to, .fade-leave{
     opacity: 1;
   }
+  .router-link-active{
+    color: white;
+    font-weight: 700;
+    padding: 0px 10px;
+    border-bottom: 2px solid #f28d1a;
+  }
   nav.navbar {
     width: 100%;
     height: 50px;
@@ -73,6 +79,7 @@ export default {
     width: 100%;
     height: 100%;
     color: rgba(255,255,255,0.75);
+    padding: 0px 10px;
   }
   nav.navbar > ul.nav > li > a.router-link-active::before {
     content: "";

@@ -11,9 +11,10 @@
 <script scoped>
 import axios from 'axios'
 import scrollTop from '../components/scrollTop.vue'
+import 'prismjs/themes/prism.css'
+import '../../static/css/prism-custom.css'
 import prism from 'markdown-it-prism'
 import MarkdownIt from 'markdown-it'
-import 'prismjs/themes/prism-okaidia.css'
 import nprogress from 'nprogress'
 
 export default {
@@ -52,7 +53,7 @@ export default {
   }
 }
 </script>
-<style lang="css" scoped>
+<style lang="scss" scoped>
   div.post-full{
     /*width: 960px;*/
     width: 100%;

@@ -1,5 +1,5 @@
 <template lang="html">
-  <span class="scrollTop" v-on:click="scrollTop"></span>
+  <span class="scrollTop" v-on:click="scrollTop"><i class='iconfont icon-scroll_top'></i></span>
 </template>
 
 <script>
@@ -24,15 +24,20 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
   span.scrollTop {
     position: fixed;
-    top: 200%;
-    right: 20px;
+    bottom: 40px;
+    right: 40px;
     display: block;
     width: 40px;
     height: 40px;
     opacity: 0.2;
     cursor: pointer;
+    i.iconfont{
+      font-size: 50px;
+      color: green;
+      font-weight: 700;
+    }
   }
 </style>
