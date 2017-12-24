@@ -22,7 +22,7 @@ export default {
         rollDown: function () {
         this.$router.push('/home')
         }
-    } 
+    }
 }
 </script>
 <style lang='scss' scoped>
