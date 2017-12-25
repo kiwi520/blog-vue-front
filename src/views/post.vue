@@ -3,7 +3,7 @@
     <div class="post-cart">
       <h3 class="post-title">{{item.Title}}</h3>
       <p class="datetime">发表于：{{item.CreateTime | times}}</p>
-      <div class="content" v-html="mark"></div>
+      <div class="content markdown-body" v-html="mark"></div>
       <scrollTop></scrollTop>
     </div>
   </div>
@@ -11,10 +11,11 @@
 <script scoped>
 import axios from 'axios'
 import scrollTop from '../components/scrollTop.vue'
+import 'prismjs/themes/prism.css'
+import '../../static/css/prism-custom.css'
 import prism from 'markdown-it-prism'
 import MarkdownIt from 'markdown-it'
-import 'prismjs/themes/prism-okaidia.css'
-import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
+import nprogress from 'nprogress'
 
 export default {
   data () {
@@ -29,48 +30,58 @@ export default {
       return date.toLocaleString('zh');
     }
   },
-  created () {
-    var article_id = this.$route.params.id;
-    if(article_id){
-      this.$http.get('/v1/article/detail/'+article_id).then((response) => {
-        this.item = response.data.data
+  beforeRouteEnter(to, from, next) {
+    nprogress.start();
+    var article_id = to.params.id;
+    axios.get('/v1/article/detail/'+article_id).then((response) => {
+      next(vm => {
+        vm.item = response.data.data
         var md = new MarkdownIt()
         md.use(prism)
-        this.mark = md.render(response.data.data.Content)
-        // console.log(this.mark)
-
-      }).catch(e => {
-        this.errors.push(e)
+        vm.mark = md.render(response.data.data.Content)
+        nprogress.done()
       })
-    }
+    }).catch(e => {
+      next(vm => {
+        vm.errors.push(e)
+        nprogress.done()
+      })
+    })
   },
   components: {
     scrollTop,
   }
 }
 </script>
-<style lang="css" scoped>
+<style lang="scss" scoped>
   div.post-full{
     /*width: 960px;*/
     width: 100%;
-    height: calc(100% - 250px);
-    margin: 0px auto;
+    margin-bottom: 50px;
   }
   div.post-cart {
     opacity: 1;
     width: 960px;
+    @media screen and (max-width:960px){
+      width: 760px; 
+    }
+    @media screen and (max-width:760px){
+      width: 100%; 
+      padding: 35px 10px;
+      margin-top: 0px;
+    }
     margin: 20px auto;
-    min-height: 100px;
     padding: 35px;
-    background: rgba(0,0,0,0.1);
-    border-radius: 4px;
+    border-radius: 3px;
     z-index: 100;
-    box-shadow: 10px 10px 30px rgba(0,0,0,0.3);
+    background: #ffffff;
+    min-height: calc(100vh - 221px);
   }
   div.post-cart > h3.post-title {
     text-align: center;
     line-height: 160%;
     margin-bottom: 0.2rem;
+    font-size: 24px;
     color: #444;
   }
   div.post-cart > p.datetime {
@@ -80,13 +91,11 @@ export default {
   }
 
   div.post-cart div.content pre {
-    background-color: #eee;
-    overflow-x: scroll;
+    background-color: #ffffff;
     padding: 0.2rem 0.3rem;
   }
   div.post-cart div.content blockquote > p{
     position: relative;
-    /*overflow: visible;*/
   }
   div.post-cart div.content blockquote > p::after {
     content: '';

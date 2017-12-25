@@ -1,17 +1,16 @@
 <template lang="html">
 <div id='home'>
     <div class="post scroll">
-      <h4>最新文章</h4>
       <ul class="posts" v-if="items && items.length">
         <li v-for="item in items">
-          <h3>{{item.Title}}</h3>
+          <h3  @click='toDetail(item.Id)'>{{item.Title}}</h3>
           <p class="main">
-            <span class="leftbg"><i class="newbg"></i>{{item.CreateTime | times}}</span>
-            <span class="full">
-          <i class="fullbg"></i>
-          <router-link :to="{ name: 'detail', params: { id: item.Id }}">看全文</router-link>
-          </span>
+            <span class="leftbg"><i class='iconfont icon-date'></i>{{item.CreateTime | times}}</span>
           </p>
+          <p class='description'>亚马逊今天推出全新 Kindle Oasis 电子书阅读器，新品的最大改进是带有防水功能和更大的 7 英吋显示屏。新品的存储容量分 8GB 和 32GB 两个版本，保护套单独出售并不再配备电池。</p>
+          <div>
+            <router-link :to="{ name: 'detail', params: { id: item.Id }}" class='readmore'>阅读全文</router-link>
+          </div>
         </li>
       </ul>
       <ul v-if="errors && errors.length">
@@ -19,13 +18,14 @@
           {{error.message}}
         </li>
       </ul>
-      <scrollTop></scrollTop>
     </div>
+    <scrollTop></scrollTop>
 </div>
 </template>
 <script>
 import scrollTop from '../components/scrollTop.vue'
 import NProgress from 'nprogress'
+import axios from 'axios'
 
 export default {
   data () {
@@ -41,84 +41,119 @@ export default {
      return date.toLocaleString('zh');
     }
   },
-  created (){
+  beforeRouteEnter (to, from, next){
     NProgress.start();
-    this.$http.get(`/v1/article/latest`).then((response) => {
-      this.items = response.data.data
-      console.log(response.data.data)
-      NProgress.done()
+    axios.get(`/v1/article/latest`).then((response) => {
+      next(vm => {
+        vm.items = response.data.data
+        NProgress.done()
+      })
     }).catch(e => {
-      this.errors.push(e)
+      next(vm => {
+        vm.errors.push(e)
+      })
     })
   },
   components: {
     scrollTop
+  },
+  methods: {
+    toDetail(num) {
+      this.$router.push('post/'+num)
+    }
   }
 }
 </script>
 
-<style lang="css" scoped>
-  ul.posts {
-    /*width: 7.5rem;*/
-    width: auto;
-    margin: 0 auto;
-    /*padding: 0.4rem 0.8rem;*/
-    list-style: none;
+<style lang="scss" scoped>
+#home{
+  background:white;
+  width: 960px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.2);
+  @media screen and (max-width:960px){
+    width: 760px; 
   }
-  ul.posts h3 {
-    color: #555;
+  @media screen and (max-width:760px){
+    width: 100%; 
   }
-
-  ul.posts > li:first-child{
-    border-top: 1px dashed #ccc;
+  div.post{
+    width: 100%;
+    padding: 40px;
+    @media screen and (max-width:760px){
+      padding: 40px 10px;
+    }
+    min-height: calc(100vh - 211px);
   }
-
-  ul.posts > li >.main > span.leftbg{
-    width: 85%;
-    float: left;
-    font-size: 20px;
+  ul.posts{
+    overflow: hidden;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    li{
+      width: 100%;
+      list-style: none;
+      float: left;
+      padding-bottom: 30px;
+      border-bottom: 1px dotted rgb(223, 223, 223);
+      margin-bottom: 10px;
+      h3{
+        font-size: 30px;
+        margin: 10px 0px;
+        float: left;
+        &:hover{
+          color: #00ada7;
+          cursor: pointer;
+        }
+      }
+      .description{
+        float: left;
+        font-size: 14px;
+        line-height: 25px;
+        margin: 0px;
+      }
+      p.main{
+        float: left;
+        width: 100%;
+        margin: 0px;
+        @media screen and (max-width:760px){
+          display: none;
+        }
+        span.leftbg{
+          color: #888;
+          font-size: 14px;
+          float: left;
+          margin: 0px;
+          i.iconfont{
+            padding-right: 10px;
+          }
+        }
+        
+      }
+      div{
+        width: 100%;
+        overflow: hidden;
+        .readmore{
+          float: left;
+          margin-top: 10px;
+          box-shadow: 1px 5px 9px rgba(170,129,243,.32);
+          border: 1px solid #f28d1a!important;
+          background: #f28d1a;
+          border-radius: 1px;
+          color: white;
+          font-size: 12px;
+          padding: 0px 5px;
+          height: 30px;
+          line-height: 30px;
+          @media screen and (max-width:760px){
+            width: 100%;
+            text-align: center;
+          }
+        }
+      }
+      
+    }
   }
-  ul.posts > li >.main > span.leftbg > i.newbg{
-    width: 16px;
-    height: 16px;
-    display: inline-block;
-    margin-right: 8px;
-    background: url(../assets/newsbg01.png) no-repeat left center;
-  }
-  ul.posts > li >.main > span.full{
-    width: 60px;
-    height: auto;
-  }
-  ul.posts > li >.main > span.full >i.fullbg{
-    width:16px;
-    height: 16px;
-    display: inline-block;
-    background: url(../assets/newsbg02.png) no-repeat left center;
-  }
-  ul.posts > li >.main > span.full > a{
-    /*margin-left: 19px;*/
-    font-size: 18px;
-    font-style: italic;
-    color: #838383;
-    display: inline-block;
-  }
-  ul.posts > li {
-    position: relative;
-    /*padding: 0.4rem 0;*/
-    margin-left: 0px;
-    padding-left: 0px;
-    border-bottom: 1px dashed #ccc;
-  }
-  ul.posts > li > p {
-    font-size: 12px;
-    color: #666;
-  }
-  ul.posts > li > p.click {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    font-size: 14px;
-    cursor: pointer;
-    text-decoration: underline;
-  }
+}
 </style>

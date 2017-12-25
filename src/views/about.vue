@@ -43,39 +43,59 @@
 </template>
 
 <script>
+import nprogress from 'nprogress'
+
 export default {
   data () {
     return {}
+  },
+  beforeRouteEnter(to, from ,next){
+    nprogress.start()
+    next(() => {
+      nprogress.done()
+    })
   }
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
+  a{
+   color: #f28d1a; 
+  }
   div.about {
-    width: 7.5rem;
+    width: 960px;
+    @media screen and (max-width:960px){
+      width: 760px; 
+    }
+    @media screen and (max-width:760px){
+      width: 100%; 
+    }
+    background: white;
     margin: 0 auto;
-    padding: 0.4rem 0.8rem;
+    padding: 30px 40px 0px 40px;
   }
-  div.about > h1 {
-    margin-bottom: 0.4rem;
+  div.about:nth-child(2){
+    padding-bottom: 40px;
   }
-  div.about > h2 {
-    margin-bottom: 0.3rem;
+  div.about h1{
+    border-left: 3px solid #00ada7;
+    text-indent: 20px;
   }
-  div.about > h3 {
-    margin: 0.1rem;
+  div.about h3{
+    text-indent: 20px;
   }
   div.about > p.text {
-    margin-bottom: 0.4rem;
     line-height: 200%;
     text-indent: 40px;
+    margin: 0px;
     color: #555;
     text-align: justify;
   }
   div.about > ul.list {
     padding-left: 0.4rem;
     list-style-position: inside;
-    list-style-type: disc;
-    line-height: 200%;
+    list-style-type: disc ;
+    line-height: 28px;
+    margin: 0px;
   }
 </style>

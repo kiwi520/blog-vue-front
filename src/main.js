@@ -5,6 +5,10 @@ import App from './App'
 import router from './router.js'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import './assets/css/nprogress.css'
+import './assets/css/iconfont.css'
+import 'babel-polyfill'
+
 
 Vue.use(VueAxios, axios)
 
